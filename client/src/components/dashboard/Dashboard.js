@@ -22,6 +22,17 @@ class Dashboard extends Component {
     }
   };
 
+  // Clear the input field
+  handleClear = () => {
+    this.setState({
+      name: "",
+      rollNumber: "",
+      board: "",
+      institution: "",
+      result: ""
+    });
+  };
+
   isAllRight = () => {
     // Check all field are empty or not
     if (
@@ -52,6 +63,7 @@ class Dashboard extends Component {
       axios.post("admin/ms/mStudentInfo", data).then(response => {
         alert("Successfully register madhyamik info..");
       });
+      this.handleClear();
     } else {
       alert("Please all field insert data");
     }
@@ -67,6 +79,7 @@ class Dashboard extends Component {
     axios.get(`admin/ms/getSingle/${rollNumber}`).then(response => {
       this.setState({ students: response.data });
     });
+    this.handleClear();
   };
 
   // Logout
@@ -106,7 +119,6 @@ class Dashboard extends Component {
         institution: response.data.institution,
         result: response.data.result
       });
-      //console.log(response.data);
     });
   };
 
@@ -125,6 +137,7 @@ class Dashboard extends Component {
       alert("Update successfully");
       this.getAllStudent();
     });
+    this.handleClear();
   };
 
   // Click delete button and delete student records

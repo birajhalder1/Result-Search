@@ -12,6 +12,11 @@ class Landing extends Component {
     };
   }
 
+  // Clear the input field
+  handleClear = () => {
+    this.setState({ rollNumber: "" });
+  };
+
   allRight = () => {
     if (this.state.rollNumber === "") {
       return false;
@@ -26,6 +31,7 @@ class Landing extends Component {
       axios.get(`api/mStudent/getMstudent/${rollNumber}`).then(response => {
         this.setState({ result: response.data });
       });
+      this.handleClear();
     } else {
       alert("Please type your roll number..!");
     }

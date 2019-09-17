@@ -20,6 +20,10 @@ class Login extends Component {
     }
   };
 
+  handleClear = () => {
+    this.setState({ email: "", password: "" });
+  };
+
   // Register auth
   onLoged = () => {
     if (this.isAllRight()) {
@@ -37,6 +41,7 @@ class Login extends Component {
         } else {
           alert("Incurrect email or password");
         }
+        this.handleClear();
       });
     } else {
       alert("Please all field insert data");
